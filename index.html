@@ -6,11 +6,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rock-Paper-Scissors</title>
 </head>
-<body>
-
+<body style="background-color: #002244;">
+    
     <script>
 
-        
+        function getComputerChoice() {
+            randomNumber = Math.floor(Math.random() * 3)
+
+            if (randomNumber === 0) {
+                return "Rock";
+            } else if (randomNumber === 1) {
+                return "Paper";
+            } else return "Scissors"
+        }
 
     </script>
     
