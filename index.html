@@ -31,7 +31,6 @@
             computerSelection = computerSelection.toLowerCase();
             
             // for testing
-
             console.log(`Player selection: ${playerSelection}`);
             console.log(`Computer selection: ${computerSelection}`);
 
@@ -40,27 +39,27 @@
                 playerSelection !== "paper" && 
                 playerSelection !== "scissors") {
                 console.log("Invalid player input. Try again.");
-                playRound(getPlayerSelection());
+                return playRound(getPlayerSelection());
             } else if (playerSelection === computerSelection) {
                 console.log(`${playerSelection} ties with ${computerSelection}. Play again!`);
-                playRound(getPlayerSelection());
+                return playRound(getPlayerSelection());
             } else if (playerSelection === "rock") {
                 if (computerSelection === "scissors") {
-                    console.log("Rock beats scissors! You win!");
+                    return "Rock beats scissors! You win!";
                 } else {
-                    console.log("Rock loses to paper. You lose!");
+                    return "Rock loses to paper. You lose!";
                 }
             } else if (playerSelection === "paper") {
                 if (computerSelection === "rock") {
-                    console.log("Paper beats rock! You win!");
+                    return "Paper beats rock! You win!";
                 } else {
-                    console.log("Paper loses to scissors. You lose!");
+                    return "Paper loses to scissors. You lose!";
                 }
             } else if (playerSelection === "scissors") {
                 if (computerSelection === "paper") {
-                    console.log("Scissors beats paper! You win!");
+                    return "Scissors beats paper! You win!";
                 } else {
-                    console.log("Scissors loses to rock. You lose!");
+                    return "Scissors loses to rock. You lose!";
                 }
             }
         }
