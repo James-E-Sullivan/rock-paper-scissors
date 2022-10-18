@@ -21,7 +21,7 @@
         }
 
         function getPlayerSelection() {
-            return prompt("Please enter Rock, Paper, or Scissors.")
+            return prompt("Please enter Rock, Paper, or Scissors.").trim();
         }
 
         function playRound(playerSelection=getPlayerSelection(), computerSelection=getComputerChoice()) {
