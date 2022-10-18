@@ -20,6 +20,51 @@
             } else return "Scissors"
         }
 
+        function getPlayerSelection() {
+            return prompt("Please enter Rock, Paper, or Scissors.")
+        }
+
+        function playRound(playerSelection=getPlayerSelection(), computerSelection=getComputerChoice()) {
+
+
+            playerSelection = playerSelection.toLowerCase();
+            computerSelection = computerSelection.toLowerCase();
+            
+            // for testing
+
+            console.log(`Player selection: ${playerSelection}`);
+            console.log(`Computer selection: ${computerSelection}`);
+
+            // if user inputs an invalid string, playRound will restart
+            if (playerSelection !== "rock" && 
+                playerSelection !== "paper" && 
+                playerSelection !== "scissors") {
+                console.log("Invalid player input. Try again.");
+                playRound(getPlayerSelection());
+            } else if (playerSelection === computerSelection) {
+                console.log(`${playerSelection} ties with ${computerSelection}. Play again!`);
+                playRound(getPlayerSelection());
+            } else if (playerSelection === "rock") {
+                if (computerSelection === "scissors") {
+                    console.log("Rock beats scissors! You win!");
+                } else {
+                    console.log("Rock loses to paper. You lose!");
+                }
+            } else if (playerSelection === "paper") {
+                if (computerSelection === "rock") {
+                    console.log("Paper beats rock! You win!");
+                } else {
+                    console.log("Paper loses to scissors. You lose!");
+                }
+            } else if (playerSelection === "scissors") {
+                if (computerSelection === "paper") {
+                    console.log("Scissors beats paper! You win!");
+                } else {
+                    console.log("Scissors loses to rock. You lose!");
+                }
+            }
+        }
+
     </script>
     
 </body>
