@@ -94,11 +94,14 @@ function addPlayAgainButton() {
 
 function game(roundsToWin=5) {
 
-    // initialize scores to 0 and resets scores on page to 0
+    // initialize scores to 0
     let playerScore = 0;
     let computerScore = 0;
+
+    // set scores on page to 0 and remove previous game result
     playerScoreDiv.textContent = 0;
     compScoreDiv.textContent = 0;
+    gameResultDiv.textContent = '';
 
     let playerResult;
 
