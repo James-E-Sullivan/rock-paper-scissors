@@ -12,7 +12,7 @@ function getPlayerSelection() {
     return prompt("Please enter Rock, Paper, or Scissors.").trim();
 }
 
-function playRound(playerSelection=getPlayerSelection(),
+function playRound(playerSelection,
                    computerSelection=getComputerChoice()) {
 
 
@@ -55,25 +55,26 @@ function playRound(playerSelection=getPlayerSelection(),
     // update results div textContent based on roundResult
     switch(roundResult) {
         case 'win':
-            results.textContent = `${playerSelection} beats ${computerSelection}! You win!`;
+            roundResultDiv.textContent = `${playerSelection} beats ${computerSelection}! You win!`;
             break;
         case 'loss':
-            results.textContent = `${playerSelection} loses to ${computerSelection}. You lose!`;
+            roundResultDiv.textContent = `${playerSelection} loses to ${computerSelection}. You lose!`;
             break;
         case 'tie':
-            results.textContent = `Both chose ${playerSelection}. It's a tie! Play again!`;
+            roundResultDiv.textContent = `Both chose ${playerSelection}. It's a tie! Play again!`;
             break;
         case undefined:
-            results.textContent = "Invalid player input. Try again.";
+            roundResultDiv.textContent = "Invalid player input. Try again.";
             break;
     }
     return roundResult;
 }
 
-const results = document.querySelector('.results');
+const roundResultDiv = document.querySelector('.round-result');
 const playerScoreDiv = document.querySelector('#player-score');
 const compScoreDiv = document.querySelector('#comp-score');
 const buttons = document.querySelectorAll('button');
+const gameResultDiv = document.querySelector('.game-result');
 
 function game(roundsToWin=5) {
 
@@ -93,16 +94,22 @@ function game(roundsToWin=5) {
                 if (playerResult === 'win') {
                     playerScore++;
                     playerScoreDiv.textContent = playerScore;
+
+                    if (playerScore >= roundsToWin) { // check score
+                        gameResultDiv.textContent = "You Win!";
+                        return;
+                    }
                 } else if (playerResult === 'loss') {
                     computerScore++;
                     compScoreDiv.textContent = computerScore;
-                } else if (playerScore >= roundsToWin) {
-                    gameResult = "You Win!";
-                } else {
-                    gameResult = "You Lose!";
+                    
+                    if (computerScore >= roundsToWin) { // check score
+                        gameResultDiv.textContent = "You Lose!";
+                        return;
+                    } 
                 }
+
             }
-            return gameResult;
         })
     })
 
