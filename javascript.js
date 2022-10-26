@@ -101,7 +101,6 @@ function game(roundsToWin=5) {
     compScoreDiv.textContent = computerScore;
 
     let playerResult;
-    let gameResult;
 
     gameButtons.forEach((gameButton) => {
         gameButton.addEventListener('click', function handler(e) {
@@ -116,9 +115,7 @@ function game(roundsToWin=5) {
     
                     if (playerScore >= roundsToWin) { // check score
                         gameResultDiv.textContent = "You Win!";
-
-                        // Add playAgainButton to reset game
-                        addPlayAgainButton();
+                        addPlayAgainButton(); // adds button to reset game
                     }
     
                 } else if (playerResult === 'loss') {
@@ -127,19 +124,12 @@ function game(roundsToWin=5) {
                     
                     if (computerScore >= roundsToWin) { // check score
                         gameResultDiv.textContent = "You Lose!";
-                
-                        // Add playAgainButton to reset game
-                        addPlayAgainButton();
+                        addPlayAgainButton(); // adds button to reset game
                     } 
                 }
             }
-
         });
     });
-
-
-
-
 }
 
 function gameStarter() {
