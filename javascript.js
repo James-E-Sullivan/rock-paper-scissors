@@ -73,10 +73,10 @@ function playRound(playerSelection,
 const roundResultDiv = document.querySelector('.round-result');
 const playerScoreDiv = document.querySelector('#player-score');
 const compScoreDiv = document.querySelector('#comp-score');
-const buttons = document.querySelectorAll('button');
+const buttons = document.querySelectorAll('.game-btn');
 const gameResultDiv = document.querySelector('.game-result');
 
-function game(roundsToWin=5) {
+function buttonEventListener(roundsToWin) {
 
     // initialize scores to 0
     let playerScore = 0;
@@ -88,27 +88,42 @@ function game(roundsToWin=5) {
     buttons.forEach((button) => {
         button.addEventListener('click', () => {
 
-            playerResult = playRound(button.id);
-
-            if (playerResult === 'win') {
-                playerScore++;
-                playerScoreDiv.textContent = playerScore;
-
-                if (playerScore >= roundsToWin) { // check score
-                    gameResultDiv.textContent = "You Win!";
-                    return;
+            
+            if (playerScore < roundsToWin && computerScore < roundsToWin){
+                playerResult = playRound(button.id);
+                if (playerResult === 'win') {
+                    playerScore++;
+                    playerScoreDiv.textContent = playerScore;
+    
+                    if (playerScore >= roundsToWin) { // check score
+                        gameResultDiv.textContent = "You Win!";
+                        gameResult = 'win';
+                        return gameResult;
+                    }
+                } else if (playerResult === 'loss') {
+                    computerScore++;
+                    compScoreDiv.textContent = computerScore;
+                    
+                    if (computerScore >= roundsToWin) { // check score
+                        gameResultDiv.textContent = "You Lose!";
+                        gameResult = 'loss';
+                        return gameResult;
+                    } 
                 }
-            } else if (playerResult === 'loss') {
-                computerScore++;
-                compScoreDiv.textContent = computerScore;
-                
-                if (computerScore >= roundsToWin) { // check score
-                    gameResultDiv.textContent = "You Lose!";
-                    return;
-                } 
             }
-        })
-    })
+
+        });
+    });
+}
+
+function game(roundsToWin=5) {
+
+    let gameResult = buttonEventListener(roundsToWin);
+    
+    const playAgainButton = document.createElement('button');
+    playAgainButton.textContent = "Play Again?";
+    gameResultDiv.appendChild(playAgainButton);
+    
 
 }
 
