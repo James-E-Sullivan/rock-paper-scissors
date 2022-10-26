@@ -28,10 +28,10 @@ function playRound(playerSelection=getPlayerSelection(),
         playerSelection !== "paper" && 
         playerSelection !== "scissors") {
         console.log("Invalid player input. Try again.");
-        return playRound(getPlayerSelection());
+        return;
     } else if (playerSelection === computerSelection) {
         console.log(`${playerSelection} ties with ${computerSelection}. Play again!`);
-        return playRound(getPlayerSelection());
+        return;
     } else if (playerSelection === "rock") {
         if (computerSelection === "scissors") {
             return "Rock beats scissors! You win!";
@@ -56,8 +56,7 @@ function playRound(playerSelection=getPlayerSelection(),
 const buttons = document.querySelectorAll('button');
 buttons.forEach((button) => {
     button.addEventListener('click', () => {
-        console.log(button.id)
-        playRound(button.id);
+        console.log(playRound(button.id));
     })
 })
 
