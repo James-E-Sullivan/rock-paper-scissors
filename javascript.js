@@ -20,10 +20,6 @@ function playRound(playerSelection,
     computerSelection = computerSelection.toLowerCase();
 
     let roundResult;  // variable for storing result of round
-    
-    // for testing
-    console.log(`Player selection: ${playerSelection}`);
-    console.log(`Computer selection: ${computerSelection}`);
 
     // set roundResult based on player and computer selection
     if (playerSelection !== "rock" && 
@@ -87,6 +83,11 @@ const gameResultDiv = document.querySelector('.game-result');
 const playAgainButton = document.createElement('button');
 playAgainButton.textContent = "Play Again?";
 
+
+function handleGameButtonClick() {
+
+}
+
 function game(roundsToWin=5) {
 
     // initialize scores to 0 and resets scores on page to 0
@@ -99,47 +100,66 @@ function game(roundsToWin=5) {
     let gameResult;
 
     gameButtons.forEach((gameButton) => {
-        gameButton.addEventListener('click', () => {
+        gameButton.addEventListener('click', function handler(e) {
 
-            if (playerScore < roundsToWin && computerScore < roundsToWin){
-                playerResult = playRound(gameButton.id);
-                if (playerResult === 'win') {
-                    playerScore++;
-                    playerScoreDiv.textContent = playerScore;
-    
-                    if (playerScore >= roundsToWin) { // check score
-                        gameResultDiv.textContent = "You Win!";
-                        gameButton.removeEventListener('click', () => {});
-                        gameResultDiv.appendChild(playAgainButton);
-                        playAgainButton.addEventListener('click', () => {
-                            gameResultDiv.removeChild(playAgainButton);
-                            game();
-                        });
-                    }
-                } else if (playerResult === 'loss') {
-                    computerScore++;
-                    compScoreDiv.textContent = computerScore;
+            console.log("gameButton clicked - event listener active");
+
+            playerResult = playRound(gameButton.id);
+            if (playerResult === 'win') {
+                playerScore++;
+                playerScoreDiv.textContent = playerScore;
+
+                if (playerScore >= roundsToWin) { // check score
+                    gameResultDiv.textContent = "You Win!";
                     
-                    if (computerScore >= roundsToWin) { // check score
-                        gameResultDiv.textContent = "You Lose!";
-                        gameButton.removeEventListener('click', () => {});
-                        gameResultDiv.appendChild(playAgainButton);
-                        playAgainButton.addEventListener('click', () => {
-                            gameResultDiv.removeChild(playAgainButton);
-                            game();
-                        });
-                    } 
+                    gameButton.removeEventListener('click', handler);
+                    console.log("Removed gameButton eventListener");
+
+                    gameResultDiv.appendChild(playAgainButton);
+                    playAgainButton.addEventListener('click', () => {
+                        playAgainButton.removeEventListener('click', () => {});
+                        gameResultDiv.removeChild(playAgainButton);                            
+                        game();
+                    });
                 }
-            } 
+
+            } else if (playerResult === 'loss') {
+                computerScore++;
+                compScoreDiv.textContent = computerScore;
+                
+                if (computerScore >= roundsToWin) { // check score
+                    gameResultDiv.textContent = "You Lose!";
+            
+                    gameButton.removeEventListener('click', handler);
+                    console.log("Removed gameButton eventListener");
+                    gameResultDiv.appendChild(playAgainButton);
+                    playAgainButton.addEventListener('click', () => {
+                        playAgainButton.removeEventListener('click', () => {
+                            console.log("Removed gameButton eventListener");
+                        });
+                        gameResultDiv.removeChild(playAgainButton);
+                        game();
+                    });
+            
+                } 
+            }
         });
     });
 
-    
-    
 
 
 
 }
 
+function gameStarter() {
+    gameCount = 0;
+    play = true;
+    while (play) {
+        gameCount++;
+        console.log(gameCount);
+        play = game();
+    }
+}
+
 // game plays once at page load
-game();
+gameStarter();
