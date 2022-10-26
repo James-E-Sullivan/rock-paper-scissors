@@ -132,15 +132,5 @@ function game(roundsToWin=5) {
     });
 }
 
-function gameStarter() {
-    gameCount = 0;
-    play = true;
-    while (play) {
-        gameCount++;
-        console.log(gameCount);
-        play = game();
-    }
-}
-
 // game plays once at page load
-gameStarter();
+game();
