@@ -70,17 +70,43 @@ function playRound(playerSelection=getPlayerSelection(),
     return roundResult;
 }
 
-const buttons = document.querySelectorAll('button');
-buttons.forEach((button) => {
-    button.addEventListener('click', () => {
-        console.log(playRound(button.id));
-    })
-})
-
 const results = document.querySelector('.results');
+const playerScoreDiv = document.querySelector('#player-score');
+const compScoreDiv = document.querySelector('#comp-score');
+const buttons = document.querySelectorAll('button');
 
-function game(rounds) {
-    for (let i = 0; i < rounds; i++) {
-        console.log(playRound());
-    }
+function game(roundsToWin=5) {
+
+    // initialize scores to 0
+    let playerScore = 0;
+    let computerScore = 0;
+
+    let playerResult;
+    let gameResult;
+
+    buttons.forEach((button) => {
+        button.addEventListener('click', () => {
+
+            if (playerScore < roundsToWin && computerScore < roundsToWin) {
+                playerResult = playRound(button.id);
+
+                if (playerResult === 'win') {
+                    playerScore++;
+                    playerScoreDiv.textContent = playerScore;
+                } else if (playerResult === 'loss') {
+                    computerScore++;
+                    compScoreDiv.textContent = computerScore;
+                } else if (playerScore >= roundsToWin) {
+                    gameResult = "You Win!";
+                } else {
+                    gameResult = "You Lose!";
+                }
+            }
+            return gameResult;
+        })
+    })
+
 }
+
+// game plays once at page load
+game();
