@@ -88,27 +88,24 @@ function game(roundsToWin=5) {
     buttons.forEach((button) => {
         button.addEventListener('click', () => {
 
-            if (playerScore < roundsToWin && computerScore < roundsToWin) {
-                playerResult = playRound(button.id);
+            playerResult = playRound(button.id);
 
-                if (playerResult === 'win') {
-                    playerScore++;
-                    playerScoreDiv.textContent = playerScore;
+            if (playerResult === 'win') {
+                playerScore++;
+                playerScoreDiv.textContent = playerScore;
 
-                    if (playerScore >= roundsToWin) { // check score
-                        gameResultDiv.textContent = "You Win!";
-                        return;
-                    }
-                } else if (playerResult === 'loss') {
-                    computerScore++;
-                    compScoreDiv.textContent = computerScore;
-                    
-                    if (computerScore >= roundsToWin) { // check score
-                        gameResultDiv.textContent = "You Lose!";
-                        return;
-                    } 
+                if (playerScore >= roundsToWin) { // check score
+                    gameResultDiv.textContent = "You Win!";
+                    return;
                 }
-
+            } else if (playerResult === 'loss') {
+                computerScore++;
+                compScoreDiv.textContent = computerScore;
+                
+                if (computerScore >= roundsToWin) { // check score
+                    gameResultDiv.textContent = "You Lose!";
+                    return;
+                } 
             }
         })
     })
