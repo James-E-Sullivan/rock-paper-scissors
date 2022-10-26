@@ -25,7 +25,7 @@ function playRound(playerSelection=getPlayerSelection(),
     console.log(`Player selection: ${playerSelection}`);
     console.log(`Computer selection: ${computerSelection}`);
 
-    // if user inputs an invalid string, playRound will restart
+    // set roundResult based on player and computer selection
     if (playerSelection !== "rock" && 
         playerSelection !== "paper" && 
         playerSelection !== "scissors") {
@@ -52,6 +52,7 @@ function playRound(playerSelection=getPlayerSelection(),
         }
     }
 
+    // update results div textContent based on roundResult
     switch(roundResult) {
         case 'win':
             results.textContent = `${playerSelection} beats ${computerSelection}! You win!`;
