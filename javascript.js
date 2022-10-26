@@ -27,11 +27,9 @@ function playRound(playerSelection=getPlayerSelection(),
     if (playerSelection !== "rock" && 
         playerSelection !== "paper" && 
         playerSelection !== "scissors") {
-        console.log("Invalid player input. Try again.");
-        return;
+        return "Invalid player input. Try again.";
     } else if (playerSelection === computerSelection) {
-        console.log(`${playerSelection} ties with ${computerSelection}. Play again!`);
-        return;
+        return `${playerSelection} ties with ${computerSelection}. Play again!`;
     } else if (playerSelection === "rock") {
         if (computerSelection === "scissors") {
             return "Rock beats scissors! You win!";
