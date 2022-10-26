@@ -12,7 +12,8 @@ function getPlayerSelection() {
     return prompt("Please enter Rock, Paper, or Scissors.").trim();
 }
 
-function playRound(playerSelection=getPlayerSelection(), computerSelection=getComputerChoice()) {
+function playRound(playerSelection=getPlayerSelection(),
+                   computerSelection=getComputerChoice()) {
 
 
     playerSelection = playerSelection.toLowerCase();
@@ -51,6 +52,13 @@ function playRound(playerSelection=getPlayerSelection(), computerSelection=getCo
         }
     }
 }
+
+const buttons = document.querySelectorAll('button');
+buttons.forEach((button) => {
+    button.addEventListener('click', (e) => {
+        console.log(e.target);
+    })
+})
 
 function game(rounds) {
     for (let i = 0; i < rounds; i++) {
