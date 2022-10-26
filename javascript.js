@@ -18,6 +18,8 @@ function playRound(playerSelection=getPlayerSelection(),
 
     playerSelection = playerSelection.toLowerCase();
     computerSelection = computerSelection.toLowerCase();
+
+    let roundResult;  // variable for storing result of round
     
     // for testing
     console.log(`Player selection: ${playerSelection}`);
@@ -27,36 +29,44 @@ function playRound(playerSelection=getPlayerSelection(),
     if (playerSelection !== "rock" && 
         playerSelection !== "paper" && 
         playerSelection !== "scissors") {
-        results.textContent = "Invalid input player. Try again."
-        return "Invalid player input. Try again.";
+        roundResult = undefined;
     } else if (playerSelection === computerSelection) {
-        results.textContent = `${playerSelection} ties with ${computerSelection}. Play again!`;
-        return `${playerSelection} ties with ${computerSelection}. Play again!`;
+        roundResult = 'tie';
     } else if (playerSelection === "rock") {
         if (computerSelection === "scissors") {
-            results.textContent = "Rock beats scissors! You win!";
-            return "Rock beats scissors! You win!";
+            roundResult = 'win';
         } else {
-            results.textContent = "Rock loses to paper. You lose!";
-            return "Rock loses to paper. You lose!";
+            roundResult = 'loss';
         }
     } else if (playerSelection === "paper") {
         if (computerSelection === "rock") {
-            results.textContent = "Paper beats rock! You win!";
-            return "Paper beats rock! You win!";
+            roundResult = 'win';
         } else {
-            results.textContent = "Paper loses to scissors. You lose!";
-            return "Paper loses to scissors. You lose!";
+            roundResult = 'loss';
         }
     } else if (playerSelection === "scissors") {
         if (computerSelection === "paper") {
-            results.textContent = "Scissors beats paper! You win!";
-            return "Scissors beats paper! You win!";
+            roundResult = 'win';
         } else {
-            results.textContent = "Scissors loses to rock. You lose!";
-            return "Scissors loses to rock. You lose!";
+            roundResult = 'loss';
         }
     }
+
+    switch(roundResult) {
+        case 'win':
+            results.textContent = `${playerSelection} beats ${computerSelection}! You win!`;
+            break;
+        case 'loss':
+            results.textContent = `${playerSelection} loses to ${computerSelection}. You lose!`;
+            break;
+        case 'tie':
+            results.textContent = `Both chose ${playerSelection}. It's a tie! Play again!`;
+            break;
+        case undefined:
+            results.textContent = "Invalid player input. Try again.";
+            break;
+    }
+    return roundResult;
 }
 
 const buttons = document.querySelectorAll('button');
