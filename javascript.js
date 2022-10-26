@@ -70,18 +70,22 @@ function playRound(playerSelection,
     return roundResult;
 }
 
+// div for showing a text result of the round
 const roundResultDiv = document.querySelector('.round-result');
+
+// divs for showing player scores
 const playerScoreDiv = document.querySelector('#player-score');
 const compScoreDiv = document.querySelector('#comp-score');
+
+// nodelist of game buttons
 const gameButtons = document.querySelectorAll('.game-btn');
+
+// div for showing the text result of the game (i.e., You Win! or You Lose!)
 const gameResultDiv = document.querySelector('.game-result');
 
+// playAgainButton used to start a new game after game is over
 const playAgainButton = document.createElement('button');
 playAgainButton.textContent = "Play Again?";
-
-function buttonClick() {
-    
-}
 
 function game(roundsToWin=5) {
 
