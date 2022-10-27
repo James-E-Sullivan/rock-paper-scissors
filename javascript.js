@@ -1,3 +1,4 @@
+// Returns Rock, Paper, or Scissors randomly
 function getComputerChoice() {
     randomNumber = Math.floor(Math.random() * 3)
 
@@ -11,9 +12,7 @@ function getComputerChoice() {
 function playRound(playerSelection,
                    computerSelection=getComputerChoice()) {
 
-    console.log(playerSelection);
-    
-    let playerSelectionCapital = playerSelection;
+    let playerSelectionCapital = playerSelection;  // assumes first letter is capitalized
     playerSelection = playerSelection.toLowerCase();
     computerSelection = computerSelection.toLowerCase();
     
@@ -92,6 +91,7 @@ function addPlayAgainButton() {
     }, {once: true});
 }
 
+// starts new game of rock/paper/scissors with all scores reset
 function game(roundsToWin=5) {
 
     // initialize scores to 0
