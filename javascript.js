@@ -11,8 +11,12 @@ function getComputerChoice() {
 function playRound(playerSelection,
                    computerSelection=getComputerChoice()) {
 
+    console.log(playerSelection);
+    
+    let playerSelectionCapital = playerSelection;
     playerSelection = playerSelection.toLowerCase();
     computerSelection = computerSelection.toLowerCase();
+    
 
     let roundResult;  // variable for storing result of round
 
@@ -46,10 +50,10 @@ function playRound(playerSelection,
     // update results div textContent based on roundResult
     switch(roundResult) {
         case 'win':
-            roundResultDiv.textContent = `${playerSelection} beats ${computerSelection}! You win!`;
+            roundResultDiv.textContent = `${playerSelectionCapital} beats ${computerSelection}! You win!`;
             break;
         case 'loss':
-            roundResultDiv.textContent = `${playerSelection} loses to ${computerSelection}. You lose!`;
+            roundResultDiv.textContent = `${playerSelectionCapital} loses to ${computerSelection}. You lose!`;
             break;
         case 'tie':
             roundResultDiv.textContent = `Both chose ${playerSelection}. It's a tie! Play again!`;
@@ -79,7 +83,7 @@ const playAgainButton = document.createElement('button');
 playAgainButton.textContent = "Play Again?";
 playAgainButton.classList.add("play-again-btn")
 
-
+// adds playAgainButton, removes it and starts a new game when clicked
 function addPlayAgainButton() {
     gameResultDiv.appendChild(playAgainButton);
     playAgainButton.addEventListener('click', () => {
@@ -100,14 +104,13 @@ function game(roundsToWin=5) {
     gameResultDiv.textContent = '';
     roundResultDiv.textContent = '';
 
-    let playerResult;
-
+    // add event listener for rock, paper, and scissor buttons
     gameButtons.forEach((gameButton) => {
         gameButton.addEventListener('click', function handler(e) {
 
             if (playerScore  < roundsToWin && computerScore < roundsToWin) {
 
-                playerResult = playRound(gameButton.id);
+                let playerResult = playRound(gameButton.getAttribute("data-id"));
 
                 if (playerResult === 'win') {
                     playerScore++;
@@ -132,5 +135,5 @@ function game(roundsToWin=5) {
     });
 }
 
-// game plays once at page load
+// game starts at page load
 game();
