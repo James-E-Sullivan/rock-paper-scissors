@@ -82,6 +82,7 @@ const gameResultDiv = document.querySelector('.game-result');
 // playAgainButton used to start a new game after game is over
 const playAgainButton = document.createElement('button');
 playAgainButton.textContent = "Play Again?";
+playAgainButton.classList.add("play-again-btn")
 
 
 function addPlayAgainButton() {
