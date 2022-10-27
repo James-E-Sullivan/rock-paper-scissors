@@ -98,7 +98,7 @@ function game(roundsToWin=5) {
     let playerScore = 0;
     let computerScore = 0;
 
-    // set scores on page to 0 and remove previous game result
+    // set scores on page to 0 and remove previous game/round result
     playerScoreDiv.textContent = 0;
     compScoreDiv.textContent = 0;
     gameResultDiv.textContent = '';

@@ -15,6 +15,7 @@ body {
 
 h1 {
     align-self: center;
+    font-size: 40px;
 }
 
 .results-container {
@@ -32,6 +33,8 @@ h1 {
     height: 70px;
     margin: 8px;
     border: 2px solid white;
+    font-size: 30px;
+    font-weight: 500;
 }
 
 .round-result {
@@ -43,6 +46,8 @@ h1 {
     margin: 8px;
     border: 2px solid white;
     text-align: center;
+    font-size: 24px;
+    font-weight: 300;
 }
 
 .scores {
@@ -52,6 +57,7 @@ h1 {
     width: 200px;
     height: 50px;
     margin: 8px;
+    font-size: 20px;
 }
 
 .score-container {
@@ -69,10 +75,27 @@ h1 {
 
 }
 
+.btn-img-container {
+    display: flex;
+    flex-direction: column;
+}
+
+img {
+    width: 100px;
+    height: 100px;
+    border: 2px solid white;
+    border-radius: 50%;
+}
+
 .game-btn {
     border-radius: 15%;
     border-style: solid;
     height: 50px;
     width: 100px;
     font-size: 20px;
+    margin: 8px 0px;
+}
+
+.game-btn:hover {
+    background-color: rgb(171, 185, 197);
 }
