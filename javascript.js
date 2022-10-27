@@ -102,6 +102,7 @@ function game(roundsToWin=5) {
     playerScoreDiv.textContent = 0;
     compScoreDiv.textContent = 0;
     gameResultDiv.textContent = '';
+    roundResultDiv.textContent = '';
 
     let playerResult;
 
